@@ -2,3 +2,43 @@
 [2024-10-21 17:45:45] Fichier courant défini : ./files/test.txt
 [2024-10-21 17:45:56] Fichier lu : ./files/test.txt
 [2024-10-21 17:46:28] Fichier lu : ./files/test.txt
+[2024-10-23 11:42:22] Fichier courant défini : ./files/test.txt
+[2024-10-23 11:42:26] Fichier lu : ./files/test.txt
+[2024-10-23 11:42:33] Données écrites dans le fichier : ./files/test.txt
+[2024-10-23 11:42:35] Nombre de lignes comptées dans ./files/test.txt: 1
+[2024-10-23 11:42:36] Nombre de lignes comptées dans ./files/test.txt: 1
+[2024-10-23 11:42:36] Nombre de lignes comptées dans ./files/test.txt: 1
+[2024-10-23 11:42:45] Recherche du mot-clé 'test' dans ./files/test.txt
+[2024-10-23 11:42:48] Fichier lu : ./files/test.txt
+[2024-10-23 11:42:48] Nombre de lignes comptées dans ./files/test.txt: 1
+[2024-10-23 11:42:48] Fichier analysé : ./files/test.txt
+[2024-10-23 11:47:16] Fichier courant défini : ./files/test.txt
+[2024-10-23 11:47:19] Fichier lu : ./files/test.txt
+[2024-10-23 11:48:45] Fichier courant défini : ./files/test.txt
+[2024-10-23 11:48:47] Fichier lu : ./files/test.txt
+[2024-10-23 11:48:47] Fichier lu : ./files/test.txt
+[2024-10-23 11:48:47] Fichier lu : ./files/test.txt
+[2024-10-23 11:48:47] Fichier lu : ./files/test.txt
+[2024-10-23 11:48:53] Nombre de lignes comptées dans ./files/test.txt: 1
+[2024-10-23 11:49:36] Fichier courant défini : ./files/file_manager.log
+[2024-10-23 11:49:37] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:37] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:38] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:38] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:38] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:38] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:38] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:38] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:39] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:39] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:39] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:39] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:39] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:39] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:40] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:40] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:49:40] Fichier lu : ./files/file_manager.log
+[2024-10-23 11:50:43] Erreur : Aucun fichier sélectionné
+[2024-10-23 11:50:45] Fichier courant défini : ./files/test.txt
+[2024-10-23 11:50:46] Fichier lu : ./files/test.txt
+[2024-10-23 11:51:39] Fichier courant défini : ./files/file_manager.log
