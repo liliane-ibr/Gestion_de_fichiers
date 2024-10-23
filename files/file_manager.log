@@ -1,6 +1,0 @@
-zizi[2024-10-23 12:12:04] Données écrites dans le fichier : ./files/file_manager.log
-[2024-10-23 12:12:08] Nombre de lignes comptées dans ./files/file_manager.log: 1
-[2024-10-23 12:12:21] Recherche du mot-clé 'zizi' dans ./files/file_manager.log
-[2024-10-23 12:12:28] Fichier lu : ./files/file_manager.log
-[2024-10-23 12:12:28] Nombre de lignes comptées dans ./files/file_manager.log: 4
-[2024-10-23 12:12:28] Fichier analysé : ./files/file_manager.log
