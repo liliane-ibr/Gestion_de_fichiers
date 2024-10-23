@@ -1,101 +1,28 @@
-### README.md
-
-```markdown
-# File Manager Project
-
-This project implements a simple file management system using Python, demonstrating object-oriented programming concepts and the use of external libraries.
-
-## Installation
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/file-manager-project.git
-   cd file-manager-project
-   ```
-
-2. Create and activate a virtual environment:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # For Windows use `venv\Scripts\activate`
-   ```
-
-3. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## Usage
-
-To run the project, execute the main script:
-
-```bash
-python main.py
-```
-
-This will demonstrate the functionality of the `FileManager` class, including:
-
-- Reading from a file
-- Writing to a file
-- Searching for keywords
-- Analyzing the file
-- Counting lines
-- Listing files in the directory
-
-### Example Usage
-
-1. **Select a File**: Choose option 1 from the menu and enter the name of the file to select.
-2. **Read File**: Select option 2 to read the contents of the selected file.
-3. **Write to File**: Choose option 3 to write data to the file.
-4. **Count Lines**: Use option 4 to count the number of lines in the file.
-5. **Search for a Keyword**: Use option 5 to search for a specific keyword within the file.
-6. **Analyze File**: Select option 6 to get an analysis of the file, including the number of words and characters.
-7. **List Files**: Option 7 will list all files in the specified directory.
-
-## Project Structure
-
-- `file_manager.py`: Contains the implementation of the `FileManager` class.
-- `main.py`: Demonstrates the usage of the `FileManager` class.
-- `log.txt`: Sample log file for testing and logging purposes.
-- `requirements.txt`: Lists the project dependencies.
-
-## The `requirements.txt` File
-
-The `requirements.txt` file lists all the Python packages that the project depends on. By specifying the exact versions of the dependencies, we ensure that the project works consistently across different environments.
-
-In this project, we use the following dependencies:
-- `chardet`: A library used for character encoding detection.
-
-To install the dependencies listed in `requirements.txt`, use:
-
-```bash
-pip install -r requirements.txt
-```
-
-This command will install all the specified packages and their correct versions, ensuring that your environment matches the one used for development.
-
-
-### Documentation de la classe `FileManager`
-
-```python
 import os
 from typing import List, Dict
 import chardet
 from datetime import datetime
 
 class Logger:
+    """
+    Classe gérant la journalisation des événements dans un fichier de log.
+    Enregistre les messages avec horodatage.
+    """
     def __init__(self, log_file: str):
         """
-        Initialise un logger avec un fichier de log spécifié.
+        Initialise le logger avec le chemin du fichier de log.
         
-        :param log_file: Chemin du fichier de log.
+        Args:
+            log_file (str): Chemin vers le fichier de log
         """
         self.log_file = log_file
 
     def log(self, message: str):
         """
-        Enregistre un message dans le fichier de log avec un timestamp.
+        Enregistre un message dans le fichier de log avec horodatage.
         
-        :param message: Le message à enregistrer dans le log.
+        Args:
+            message (str): Message à journaliser
         """
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         log_entry = f"[{timestamp}] {message}\n"
@@ -103,42 +30,53 @@ class Logger:
             file.write(log_entry)
 
 class FileManager:
+    """
+    Classe principale gérant les opérations sur les fichiers.
+    Permet la lecture, l'écriture, l'analyse et la recherche dans les fichiers.
+    """
     def __init__(self, directory: str, log_file: str):
         """
-        Initialise une instance de FileManager.
+        Initialise le gestionnaire de fichiers.
         
-        :param directory: Répertoire dans lequel les fichiers seront gérés.
-        :param log_file: Chemin du fichier de log où les actions seront enregistrées.
+        Args:
+            directory (str): Répertoire de travail
+            log_file (str): Chemin vers le fichier de log
         """
+        # Crée le répertoire s'il n'existe pas
         self.directory = directory
         if not os.path.exists(self.directory):
             os.makedirs(self.directory)
+        # Initialise le logger et le chemin de fichier courant
         self.logger = Logger(log_file)
-        self.file_path = None  # Nouveau: pour stocker le chemin du fichier actuel
+        self.file_path = None
 
     def set_file_path(self, filename: str):
         """
-        Définit le chemin du fichier courant à partir du nom de fichier donné.
+        Définit le fichier courant sur lequel travailler.
         
-        :param filename: Nom du fichier à définir comme fichier courant.
+        Args:
+            filename (str): Nom du fichier à utiliser
         """
         self.file_path = os.path.join(self.directory, filename)
         self.logger.log(f"Fichier courant défini : {self.file_path}")
 
     def read_file(self) -> str:
         """
-        Lit le contenu du fichier courant et retourne son contenu.
+        Lit le contenu du fichier courant en détectant automatiquement l'encodage.
         
-        :return: Contenu du fichier ou un message d'erreur si aucun fichier n'est sélectionné.
+        Returns:
+            str: Contenu du fichier ou chaîne vide en cas d'erreur
         """
         if not self.file_path:
             self.logger.log("Erreur : Aucun fichier sélectionné")
             return "Erreur : Aucun fichier sélectionné"
         
         try:
+            # Détecte l'encodage du fichier
             with open(self.file_path, 'rb') as file:
                 raw_data = file.read()
                 encoding = chardet.detect(raw_data)['encoding']
+            # Lit le fichier avec l'encodage détecté
             with open(self.file_path, 'r', encoding=encoding) as file:
                 content = file.read()
             self.logger.log(f"Fichier lu : {self.file_path}")
@@ -155,14 +93,18 @@ class FileManager:
         """
         Écrit des données dans le fichier courant.
         
-        :param data: Données à écrire dans le fichier.
-        :return: True si l'écriture est réussie, sinon False.
+        Args:
+            data (str): Données à écrire dans le fichier
+            
+        Returns:
+            bool: True si l'écriture a réussi, False sinon
         """
         if not self.file_path:
             self.logger.log("Erreur : Aucun fichier sélectionné")
             return False
         
         try:
+            # Écrit les données en UTF-8
             with open(self.file_path, 'w', encoding='utf-8') as file:
                 file.write(data)
             self.logger.log(f"Données écrites dans le fichier : {self.file_path}")
@@ -177,13 +119,15 @@ class FileManager:
         """
         Compte le nombre de lignes dans le fichier courant.
         
-        :return: Nombre de lignes ou 0 si aucun fichier n'est sélectionné.
+        Returns:
+            int: Nombre de lignes ou 0 en cas d'erreur
         """
         if not self.file_path:
             self.logger.log("Erreur : Aucun fichier sélectionné")
             return 0
         
         try:
+            # Utilise un générateur pour compter efficacement les lignes
             with open(self.file_path, 'r', encoding='utf-8') as file:
                 line_count = sum(1 for _ in file)
             self.logger.log(f"Nombre de lignes comptées dans {self.file_path}: {line_count}")
@@ -196,16 +140,20 @@ class FileManager:
 
     def search_keyword(self, keyword: str) -> List[str]:
         """
-        Recherche un mot-clé dans le fichier courant et retourne les lignes correspondantes.
+        Recherche un mot-clé dans le fichier et retourne les lignes correspondantes.
         
-        :param keyword: Mot-clé à rechercher dans le fichier.
-        :return: Liste des lignes contenant le mot-clé ou une liste vide si aucun fichier n'est sélectionné.
+        Args:
+            keyword (str): Mot-clé à rechercher
+            
+        Returns:
+            List[str]: Liste des lignes contenant le mot-clé
         """
         if not self.file_path:
             self.logger.log("Erreur : Aucun fichier sélectionné")
             return []
         
         try:
+            # Lit le fichier et collecte les lignes contenant le mot-clé
             with open(self.file_path, 'r', encoding='utf-8') as file:
                 matching_lines = [line.strip() for line in file if keyword in line]
             
@@ -225,14 +173,17 @@ class FileManager:
 
     def analyze_file(self) -> Dict:
         """
-        Analyse le fichier courant et retourne des statistiques sur son contenu.
+        Analyse le fichier courant et retourne des statistiques.
         
-        :return: Dictionnaire contenant le nom du fichier, la taille, le nombre de lignes, de mots et de caractères.
+        Returns:
+            Dict: Dictionnaire contenant les statistiques du fichier
+                (nom, taille, nombre de lignes, mots et caractères)
         """
         if not self.file_path:
             self.logger.log("Erreur : Aucun fichier sélectionné")
             return {}
         
+        # Collecte diverses statistiques sur le fichier
         content = self.read_file()
         analysis = {
             "filename": os.path.basename(self.file_path),
@@ -246,11 +197,12 @@ class FileManager:
 
     def list_files(self) -> List[str]:
         """
-        Liste tous les fichiers dans le répertoire géré.
+        Liste tous les fichiers dans le répertoire de travail.
         
-        :return: Liste des fichiers présents dans le répertoire.
+        Returns:
+            List[str]: Liste des noms de fichiers dans le répertoire
         """
+        # Liste uniquement les fichiers (pas les dossiers)
         files = [f for f in os.listdir(self.directory) if os.path.isfile(os.path.join(self.directory, f))]
         self.logger.log("Liste des fichiers récupérée")
         return files
-```
